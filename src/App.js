@@ -4,7 +4,8 @@ import Results from "./components/Results";
 import Search from "./components/Search";
 import mapboxgl from "mapbox-gl";
 
-mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
+mapboxgl.accessToken =
+    "pk.eyJ1Ijoicmh5dGhtc2FoYSIsImEiOiJja3MwaGhqeG8wYTRuMndwZXFwMWtvcGdrIn0.7u7WzVhiVLkk9a85o1XQ9A";
 
 const App = () => {
     const mapContainerRef = useRef(null);
