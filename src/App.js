@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Header from "./components/Header";
 import Results from "./components/Results";
 import Search from "./components/Search";
-import mapboxgl from "mapbox-gl";
+import mapboxgl from "!mapbox-gl";
 
 mapboxgl.accessToken =
     "pk.eyJ1Ijoicmh5dGhtc2FoYSIsImEiOiJja3MwaGhqeG8wYTRuMndwZXFwMWtvcGdrIn0.7u7WzVhiVLkk9a85o1XQ9A";
