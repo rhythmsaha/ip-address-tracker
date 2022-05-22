@@ -1,15 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Results from "./components/Results";
 import Search from "./components/Search";
-import mapboxgl from "mapbox-gl";
-
-mapboxgl.accessToken =
-    "pk.eyJ1Ijoicmh5dGhtc2FoYSIsImEiOiJja3MwaGhqeG8wYTRuMndwZXFwMWtvcGdrIn0.7u7WzVhiVLkk9a85o1XQ9A";
 
 const App = () => {
-    const mapContainerRef = useRef(null);
-
     const [result, setResult] = useState({
         ip: "192.212.174.101",
         version: "IPv4",
@@ -40,18 +34,6 @@ const App = () => {
     });
 
     useEffect(() => {
-        const map = new mapboxgl.Map({
-            container: mapContainerRef.current,
-
-            style: "mapbox://styles/mapbox/streets-v11",
-            center: [result.longitude, result.latitude],
-            zoom: 15,
-        });
-
-        return () => map.remove();
-    }, [result]);
-
-    useEffect(() => {
         fetch(`https://ipapi.co/json/`)
             .then((res) => res.json())
             .then((data) => setResult(data))
@@ -77,10 +59,15 @@ const App = () => {
                 <Results result={result} />
             </section>
 
-            <div
-                className="map-container absolute bottom-0 right-0 left-0 top-80 lg:top-72 -z-10"
-                ref={mapContainerRef}
-            />
+            <div className="absolute top-80 lg:top-72 bottom-0 right-0 left-0 -z-10">
+                <iframe
+                    title="map"
+                    width="100%"
+                    height="100%"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDE2ZiptdG1UYwQfPZfk_7248dF8Wf8TlU&q=${result?.latitude},${result?.longitude}`}
+                ></iframe>
+            </div>
         </>
     );
 };
